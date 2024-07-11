@@ -1,0 +1,16 @@
+@import 'highlight.js/scss/github.scss';
+
+pre code.hljs {
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  margin: 0.5em 0;
+}
+
+.dark {
+  @import 'highlight.js/scss/github-dark.scss';
+}
+
+html, body, #__nuxt {
+  height: 100%;
+  font-family: "Noto Sans", SF Pro SC, SF Pro Text, SF Pro Icons, PingFang SC, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
