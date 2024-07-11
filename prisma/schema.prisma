@@ -1,0 +1,32 @@
+datasource sqlite {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["linux-arm64-openssl-3.0.x", "darwin-arm64", "debian-openssl-3.0.x", "windows"]
+}
+
+model KnowledgeBase {
+  id          Int                 @id @default(autoincrement())
+  name        String              @unique
+  embedding   String?
+  description String?
+  created     DateTime?
+  updated     DateTime?
+  files       KnowledgeBaseFile[] @relation("Files")
+}
+
+model KnowledgeBaseFile {
+  id              Int           @id @default(autoincrement())
+  url             String
+  knowledgeBase   KnowledgeBase @relation("Files", fields: [knowledgeBaseId], references: [id], onDelete: Cascade)
+  knowledgeBaseId Int
+}
+
+model Instruction {
+  id          Int    @id @default(autoincrement())
+  name        String @unique
+  instruction String
+}
